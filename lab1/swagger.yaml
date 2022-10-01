@@ -1,0 +1,888 @@
+openapi: 3.0.0
+info:
+    title: "TurHelper"
+    version: 0.0.1
+servers:
+    - url: http://localhost:8080/api/v1/
+      description: DevServer
+paths:
+    /users:
+        get:
+            summary: Get all users method
+            tags:
+              - Users
+            operationId: getAllUsers
+            responses:
+              '200':
+                description: Success answer
+                content:
+                  application/json:
+                    schema:
+                      $ref: "#/components/schemas/Users"
+              'default':
+                description: Errors
+                content:
+                  application/json:
+                    schema:
+                      $ref: "#/components/schemas/Error"
+        post:
+            summary: Register new user method
+            tags:
+              - Users
+            operationId: registerUser
+            parameters:
+              - name: login
+                in: query
+                required: true
+                description: user login
+                schema:
+                  type: string
+                  example: Testlogin
+              - name: password
+                in: query
+                required: true
+                description: user password
+                schema:
+                  type: string
+                  example: Testpassword
+              - name: permission
+                in: query
+                required: true
+                description: permission
+                schema:
+                  type: integer
+                  example: 1
+            requestBody:
+              required: true
+              content:
+                application/json:
+                  schema:
+                    $ref: "#/components/schemas/User"
+            responses:
+              '200':
+                description: Success answer
+                content:
+                  application/json:
+                    schema:
+                      $ref: "#/components/schemas/User"
+              'default':
+                description: Errors
+                content:
+                  application/json:
+                    schema:
+                      $ref: "#/components/schemas/Error"
+    /users/{login}:
+        get:
+            summary: Get user info by login
+            tags:
+              - Users
+            operationId: getUserInfo
+            parameters:
+              - name: login
+                in: path
+                required: true
+                description: User login
+                schema:
+                  type: string
+                  example: Testlogin
+            responses:
+              '200':
+                description: Success answer
+                content:
+                  application/json:
+                    schema:
+                      $ref: "#/components/schemas/User"
+              'default':
+                description: Errors
+                content:
+                  application/json:
+                    schema:
+                      $ref: "#/components/schemas/Error"
+        patch:
+            summary: Update user method
+            tags:
+              - Users
+            operationId: updateUser
+            parameters:
+              - name: login
+                in: path
+                required: true
+                description: user login
+                schema:
+                  type: string
+                  example: Testlogin
+              - name: password
+                in: query
+                required: true
+                description: user password
+                schema:
+                  type: string
+                  example: Testpassword
+              - name: permission
+                in: query
+                required: true
+                description: permission
+                schema:
+                  type: integer
+                  example: 1
+            requestBody:
+              required: true
+              content:
+                application/json:
+                  schema:
+                    $ref: "#/components/schemas/User"
+            responses:
+              '200':
+                description: Success answer
+                content:
+                  application/json:
+                    schema:
+                      $ref: "#/components/schemas/User"
+              'default':
+                description: Errors
+                content:
+                  application/json:
+                    schema:
+                      $ref: "#/components/schemas/Error"
+    /countries:
+        get:
+            summary: Get all countries method
+            tags:
+              - Countries
+            operationId: getAllCountries
+            responses:
+              '200':
+                description: Success answer
+                content:
+                  application/json:
+                    schema:
+                      $ref: "#/components/schemas/Countries"
+              'default':
+                description: Errors
+                content:
+                  application/json:
+                    schema:
+                      $ref: "#/components/schemas/Error"
+    /countries/{name}:
+        get:
+            summary: Get country info by name
+            tags:
+              - Countries
+            operationId: getCountryInfo
+            parameters:
+              - name: name
+                in: path
+                required: true
+                description: Country name
+                schema:
+                  type: string
+                  example: Франция
+            responses:
+              '200':
+                description: Success answer
+                content:
+                  application/json:
+                    schema:
+                      $ref: "#/components/schemas/Country"
+              'default':
+                description: Errors
+                content:
+                  application/json:
+                    schema:
+                      $ref: "#/components/schemas/Error"
+    /climats/{id_country}:
+        get:
+            summary: Get climat info
+            tags:
+              - Climat
+            operationId: getClimatInfo
+            parameters:
+              - name: id_country
+                in: path
+                required: true
+                description: Country id
+                schema:
+                  type: integer
+                  example: 1
+            responses:
+              '200':
+                description: Success answer
+                content:
+                  application/json:
+                    schema:
+                      $ref: "#/components/schemas/Climat"
+              'default':
+                description: Errors
+                content:
+                  application/json:
+                    schema:
+                      $ref: "#/components/schemas/Error"
+        patch:
+            summary: update climat method
+            tags:
+              - Climat
+            operationId: updateClimat
+            parameters:
+              - name: id_country
+                in: path
+                required: true
+                description: Country id
+                schema:
+                  type: integer
+                  example: 1
+              - name: turmonth
+                in: query
+                required: true
+                description: tur mounth
+                schema:
+                  type: string
+                  example: Апрель
+              - name: temp
+                in: query
+                required: true
+                description: temp
+                schema:
+                  type: integer
+                  example: 20
+              - name: tempNight
+                in: query
+                required: true
+                description: nigth temp
+                schema:
+                  type: integer
+                  example: 14
+              - name: tempWater
+                in: query
+                required: true
+                description: water temp
+                schema:
+                  type: integer
+                  example: 12
+            responses:
+              '200':
+                description: Success answer
+                content:
+                  application/json:
+                    schema:
+                      $ref: "#/components/schemas/Climat"
+              'default':
+                description: Errors
+                content:
+                  application/json:
+                    schema:
+                      $ref: "#/components/schemas/Error"
+    /countries/{id_country}/hotels:
+        get:
+            summary: Get all hotels from country method
+            tags:
+              - Hotels
+            operationId: getAllHotels
+            parameters:
+              - name: id_country
+                in: path
+                required: true
+                description: Country id
+                schema:
+                  type: integer
+                  example: 1
+            responses:
+              '200':
+                description: Success answer
+                content:
+                  application/json:
+                    schema:
+                      $ref: "#/components/schemas/Hotels"
+              'default':
+                description: Errors
+                content:
+                  application/json:
+                    schema:
+                      $ref: "#/components/schemas/Error"
+        post:
+            summary: Create new hotel method
+            tags:
+              - Hotels
+            operationId: insertHotel
+            parameters:
+              - name: id_country
+                in: path
+                required: true
+                description: Country id
+                schema:
+                  type: integer
+                  example: 1
+              - name: name
+                in: query
+                required: true
+                description: Hotel name
+                schema:
+                  type: string
+                  example: Hotel de Paris
+              - name: stars
+                in: query
+                required: true
+                description: Hotel stars
+                schema:
+                  type: integer
+                  example: 5
+              - name: beach
+                in: query
+                required: true
+                description: Hotel beach
+                schema:
+                  type: boolean
+                  example: false
+              - name: allinc
+                in: query
+                required: true
+                description: all inclusive
+                schema:
+                  type: boolean
+                  example: true
+            requestBody:
+              required: true
+              content:
+                application/json:
+                  schema:
+                    $ref: "#/components/schemas/Hotel"
+            responses:
+              '200':
+                description: Success answer
+                content:
+                  application/json:
+                    schema:
+                      $ref: "#/components/schemas/Hotel"
+              'default':
+                description: Errors
+                content:
+                  application/json:
+                    schema:
+                      $ref: "#/components/schemas/Error"
+    /countries/{id_country}/hotels/{name}:
+        get:
+            summary: Get hotel info by name
+            tags:
+              - Hotels
+            operationId: getHotelInfo
+            parameters:
+              - name: id_country
+                in: path
+                required: true
+                description: Country id
+                schema:
+                  type: integer
+                  example: 1
+              - name: name
+                in: path
+                required: true
+                description: Hotel name
+                schema:
+                  type: string
+                  example: Hotel de Paris
+            responses:
+              '200':
+                description: Success answer
+                content:
+                  application/json:
+                    schema:
+                      $ref: "#/components/schemas/Hotel"
+              'default':
+                description: Errors
+                content:
+                  application/json:
+                    schema:
+                      $ref: "#/components/schemas/Error"
+    /countries/{id_country}/hotels/{hotel_id}:
+        delete:
+            summary: Delete hotel
+            tags:
+              - Hotels
+            operationId: deleteHotel
+            parameters:
+              - name: id_country
+                in: path
+                required: true
+                description: Country id
+                schema:
+                  type: integer
+                  example: 1
+              - name: hotel_id
+                in: path
+                required: true
+                description: Hotel id
+                schema:
+                  type: integer
+                  example: 1
+            responses:
+              '200':
+                description: Success answer
+                content:
+                  application/json: {}
+              'default':
+                description: Errors
+                content:
+                  application/json:
+                    schema:
+                      $ref: "#/components/schemas/Error"
+        patch:
+            summary: update hotel method
+            tags:
+              - Hotels
+            operationId: updateHotel
+            parameters:
+              - name: id_country
+                in: path
+                required: true
+                description: Country id
+                schema:
+                  type: integer
+                  example: 1
+              - name: hotel_id
+                in: path
+                required: true
+                description: Hotel id
+                schema:
+                  type: integer
+                  example: 1
+              - name: name
+                in: query
+                required: true
+                description: Hotel name
+                schema:
+                  type: string
+                  example: Hotel de Paris
+              - name: stars
+                in: query
+                required: true
+                description: Hotel stars
+                schema:
+                  type: integer
+                  example: 5
+              - name: beach
+                in: query
+                required: true
+                description: Hotel beach
+                schema:
+                  type: boolean
+                  example: false
+              - name: allinc
+                in: query
+                required: true
+                description: all inclusive
+                schema:
+                  type: boolean
+                  example: true
+            responses:
+              '200':
+                description: Success answer
+                content:
+                  application/json:
+                    schema:
+                      $ref: "#/components/schemas/Hotel"
+              'default':
+                description: Errors
+                content:
+                  application/json:
+                    schema:
+                      $ref: "#/components/schemas/Error"
+    /countries/{id_country}/hotels/{hotel_id}/rooms:
+        get:
+            summary: Get all rooms from hotel method
+            tags:
+              - Rooms
+            operationId: getAllRooms
+            parameters:
+              - name: id_country
+                in: path
+                required: true
+                description: Country id
+                schema:
+                  type: integer
+                  example: 1
+              - name: hotel_id
+                in: path
+                required: true
+                description: Hotel id
+                schema:
+                  type: integer
+                  example: 1
+            responses:
+              '200':
+                description: Success answer
+                content:
+                  application/json:
+                    schema:
+                      $ref: "#/components/schemas/Rooms"
+              'default':
+                description: Errors
+                content:
+                  application/json:
+                    schema:
+                      $ref: "#/components/schemas/Error"
+        post:
+            summary: Create new room method
+            tags:
+              - Rooms
+            operationId: insertRoom
+            parameters:
+              - name: id_country
+                in: path
+                required: true
+                description: Country id
+                schema:
+                  type: integer
+                  example: 1
+              - name: hotel_id
+                in: path
+                required: true
+                description: Hotel id
+                schema:
+                  type: integer
+                  example: 1
+              - name: name
+                in: query
+                required: true
+                description: Room name
+                schema:
+                  type: string
+                  example: Standart Room
+              - name: capacity
+                in: query
+                required: true
+                description: room capacity
+                schema:
+                  type: integer
+                  example: 5
+              - name: floor
+                in: query
+                required: true
+                description: room floor
+                schema:
+                  type: integer
+                  example: 2
+              - name: price
+                in: query
+                required: true
+                description: room price
+                schema:
+                  type: integer
+                  example: 1000
+            requestBody:
+              required: true
+              content:
+                application/json:
+                  schema:
+                    $ref: "#/components/schemas/Room"
+            responses:
+              '200':
+                description: Success answer
+                content:
+                  application/json:
+                    schema:
+                      $ref: "#/components/schemas/Room"
+              'default':
+                description: Errors
+                content:
+                  application/json:
+                    schema:
+                      $ref: "#/components/schemas/Error"
+    /countries/{id_country}/hotels/{hotel_id}/rooms/{name}:
+        get:
+            summary: Get room info by name
+            tags:
+              - Rooms
+            operationId: getRoomInfo
+            parameters:
+              - name: id_country
+                in: path
+                required: true
+                description: Country id
+                schema:
+                  type: integer
+                  example: 1
+              - name: hotel_id
+                in: path
+                required: true
+                description: Hotel id
+                schema:
+                  type: integer
+                  example: 1
+              - name: name
+                in: path
+                required: true
+                description: Room name
+                schema:
+                  type: string
+                  example: Standart Room
+            responses:
+              '200':
+                description: Success answer
+                content:
+                  application/json:
+                    schema:
+                      $ref: "#/components/schemas/Room"
+              'default':
+                description: Errors
+                content:
+                  application/json:
+                    schema:
+                      $ref: "#/components/schemas/Error"
+    /countries/{id_country}/hotels/{hotel_id}/rooms/{room_id}:
+        delete:
+            summary: Delete room
+            tags:
+              - Rooms
+            operationId: deleteRoom
+            parameters:
+              - name: id_country
+                in: path
+                required: true
+                description: Country id
+                schema:
+                  type: integer
+                  example: 1
+              - name: hotel_id
+                in: path
+                required: true
+                description: Hotel id
+                schema:
+                  type: integer
+                  example: 1
+              - name: room_id
+                in: path
+                required: true
+                description: Room id
+                schema:
+                  type: integer
+                  example: 1
+            responses:
+              '200':
+                description: Success answer
+                content:
+                  application/json: {}
+              'default':
+                description: Errors
+                content:
+                  application/json:
+                    schema:
+                      $ref: "#/components/schemas/Error"
+        patch:
+            summary: update room method
+            tags:
+              - Rooms
+            operationId: updateRoom
+            parameters:
+              - name: id_country
+                in: path
+                required: true
+                description: Country id
+                schema:
+                  type: integer
+                  example: 1
+              - name: hotel_id
+                in: path
+                required: true
+                description: Hotel id
+                schema:
+                  type: integer
+                  example: 1
+              - name: room_id
+                in: path
+                required: true
+                description: Room id
+                schema:
+                  type: integer
+                  example: 1
+              - name: name
+                in: query
+                required: true
+                description: Room name
+                schema:
+                  type: string
+                  example: Standart Room
+              - name: capacity
+                in: query
+                required: true
+                description: room capacity
+                schema:
+                  type: integer
+                  example: 5
+              - name: floor
+                in: query
+                required: true
+                description: room floor
+                schema:
+                  type: integer
+                  example: 2
+              - name: price
+                in: query
+                required: true
+                description: room price
+                schema:
+                  type: integer
+                  example: 1000
+            responses:
+              '200':
+                description: Success answer
+                content:
+                  application/json:
+                    schema:
+                      $ref: "#/components/schemas/Room"
+              'default':
+                description: Errors
+                content:
+                  application/json:
+                    schema:
+                      $ref: "#/components/schemas/Error"
+                  
+                  
+components:
+  schemas:
+    User:
+      type: object
+      required:
+        - login
+        - password
+        - permission
+      properties:
+        user_id:
+          type: integer
+          example: 1
+        login:
+          type: string
+          example: Testlogin
+        password:
+          type: string
+          example: Testpassword
+        permission:
+          type: integer
+          example: 1
+    Users:
+      type: array
+      items:
+        $ref: "#/components/schemas/User"
+    Room:
+      type: object
+      required:
+        - name
+        - capacity
+        - floor
+        - price
+      properties:
+        room_id:
+          type: integer
+          example: 1
+        hotel_id:
+          type: integer
+          example: 1
+        name:
+          type: string
+          example: Standart Room
+        capacity:
+          type: integer
+          example: 5
+        floor:
+          type: integer
+          example: 2
+        price:
+          type: integer
+          example: 1000
+    Rooms:
+      type: array
+      items:
+        $ref: "#/components/schemas/Room"
+    Hotel:
+      type: object
+      required:
+        - id_country
+        - name
+        - stars
+        - beach
+        - allinc
+      properties:
+        hotel_id:
+          type: integer
+          example: 1
+        id_country:
+          type: integer
+          example: 1
+        name:
+          type: string
+          example: Hotel de Paris
+        stars:
+          type: integer
+          example: 5
+        beach:
+          type: boolean
+          example: false
+        allinc:
+          type: boolean
+          example: true
+    Hotels:
+      type: array
+      items:
+        $ref: "#/components/schemas/Hotel"
+    Climat:
+      type: object
+      required:
+        - turmonth
+        - temp
+        - tempNight
+        - tempWater
+      properties:
+        climat_id:
+          type: integer
+          example: 1
+        id_country:
+          type: integer
+          example: 1
+        turmonth:
+          type: string
+          example: Апрель
+        temp:
+          type: integer
+          example: 20
+        tempNight:
+          type: integer
+          example: 14
+        tempWater:
+          type: integer
+          example: 12
+    Climats:
+      type: array
+      items:
+        $ref: "#/components/schemas/Climat"
+    Country:
+      type: object
+      required:
+        - name
+        - continent
+        - capital
+      properties:
+        country_id:
+          type: integer
+          example: 1
+        name:
+          type: string
+          example: Франция
+        continent:
+          type: string
+          example: Европа
+        capital:
+          type: string
+          example: Париж
+    Countries:
+      type: array
+      items:
+        $ref: "#/components/schemas/Country"
+    Error:
+      type: object
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+  
