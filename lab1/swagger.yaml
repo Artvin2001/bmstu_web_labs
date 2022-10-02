@@ -38,20 +38,6 @@ paths:
                 schema:
                   type: string
                   example: Testlogin
-              - name: password
-                in: query
-                required: true
-                description: user password
-                schema:
-                  type: string
-                  example: Testpassword
-              - name: permission
-                in: query
-                required: true
-                description: permission
-                schema:
-                  type: integer
-                  example: 1
             requestBody:
               required: true
               content:
@@ -111,20 +97,6 @@ paths:
                 schema:
                   type: string
                   example: Testlogin
-              - name: password
-                in: query
-                required: true
-                description: user password
-                schema:
-                  type: string
-                  example: Testpassword
-              - name: permission
-                in: query
-                required: true
-                description: permission
-                schema:
-                  type: integer
-                  example: 1
             requestBody:
               required: true
               content:
@@ -230,34 +202,6 @@ paths:
                 schema:
                   type: integer
                   example: 1
-              - name: turmonth
-                in: query
-                required: true
-                description: tur mounth
-                schema:
-                  type: string
-                  example: Апрель
-              - name: temp
-                in: query
-                required: true
-                description: temp
-                schema:
-                  type: integer
-                  example: 20
-              - name: tempNight
-                in: query
-                required: true
-                description: nigth temp
-                schema:
-                  type: integer
-                  example: 14
-              - name: tempWater
-                in: query
-                required: true
-                description: water temp
-                schema:
-                  type: integer
-                  example: 12
             responses:
               '200':
                 description: Success answer
@@ -311,34 +255,6 @@ paths:
                 schema:
                   type: integer
                   example: 1
-              - name: name
-                in: query
-                required: true
-                description: Hotel name
-                schema:
-                  type: string
-                  example: Hotel de Paris
-              - name: stars
-                in: query
-                required: true
-                description: Hotel stars
-                schema:
-                  type: integer
-                  example: 5
-              - name: beach
-                in: query
-                required: true
-                description: Hotel beach
-                schema:
-                  type: boolean
-                  example: false
-              - name: allinc
-                in: query
-                required: true
-                description: all inclusive
-                schema:
-                  type: boolean
-                  example: true
             requestBody:
               required: true
               content:
@@ -444,34 +360,6 @@ paths:
                 schema:
                   type: integer
                   example: 1
-              - name: name
-                in: query
-                required: true
-                description: Hotel name
-                schema:
-                  type: string
-                  example: Hotel de Paris
-              - name: stars
-                in: query
-                required: true
-                description: Hotel stars
-                schema:
-                  type: integer
-                  example: 5
-              - name: beach
-                in: query
-                required: true
-                description: Hotel beach
-                schema:
-                  type: boolean
-                  example: false
-              - name: allinc
-                in: query
-                required: true
-                description: all inclusive
-                schema:
-                  type: boolean
-                  example: true
             responses:
               '200':
                 description: Success answer
@@ -539,34 +427,6 @@ paths:
                 schema:
                   type: integer
                   example: 1
-              - name: name
-                in: query
-                required: true
-                description: Room name
-                schema:
-                  type: string
-                  example: Standart Room
-              - name: capacity
-                in: query
-                required: true
-                description: room capacity
-                schema:
-                  type: integer
-                  example: 5
-              - name: floor
-                in: query
-                required: true
-                description: room floor
-                schema:
-                  type: integer
-                  example: 2
-              - name: price
-                in: query
-                required: true
-                description: room price
-                schema:
-                  type: integer
-                  example: 1000
             requestBody:
               required: true
               content:
@@ -693,34 +553,6 @@ paths:
                 schema:
                   type: integer
                   example: 1
-              - name: name
-                in: query
-                required: true
-                description: Room name
-                schema:
-                  type: string
-                  example: Standart Room
-              - name: capacity
-                in: query
-                required: true
-                description: room capacity
-                schema:
-                  type: integer
-                  example: 5
-              - name: floor
-                in: query
-                required: true
-                description: room floor
-                schema:
-                  type: integer
-                  example: 2
-              - name: price
-                in: query
-                required: true
-                description: room price
-                schema:
-                  type: integer
-                  example: 1000
             responses:
               '200':
                 description: Success answer
@@ -885,4 +717,3 @@ components:
           type: integer
         message:
           type: string
-  
