@@ -31,4 +31,5 @@ WEB 2022, IU7
 
 ## Лабораторная работа №2
 Figma: https://www.figma.com/files/project/70899396/Team-project?fuid=1165581953328621054
+
 MoodBoard: https://pin.it/3jV4PYC
