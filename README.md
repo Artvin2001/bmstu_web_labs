@@ -28,3 +28,6 @@ WEB 2022, IU7
 
 Экран редактирования номера
 ![9](https://user-images.githubusercontent.com/65854054/197381878-69c7e7e3-b0e0-49fa-ac93-3dbd30269810.png)
+
+## Лабораторная работа №2
+Figma: https://www.figma.com/files/project/70899396/Team-project?fuid=1165581953328621054
